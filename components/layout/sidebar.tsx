@@ -1,27 +1,34 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { BarChart3, Bell, LayoutDashboard, Package, UtensilsCrossed } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { Bell, Boxes, LayoutDashboard, Package, ShoppingBag, Truck } from "lucide-react";
 
 const navItems = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
   { name: "Inventory", href: "/inventory", icon: Package },
+  { name: "Orders", href: "/reports", icon: ShoppingBag },
+  { name: "Suppliers", href: "/delivery", icon: Truck },
+  { name: "Kitchen Lab", href: "/dish-profit", icon: Boxes },
   { name: "Alerts", href: "/alerts", icon: Bell },
-  { name: "Reports", href: "/reports", icon: BarChart3 },
-  { name: "Dish Profit", href: "/dish-profit", icon: UtensilsCrossed },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
-    <aside className="glass-surface fixed left-0 top-0 z-40 hidden h-screen w-72 border-r border-white/10 p-6 md:block">
-      <div className="mb-10">
-        <h1 className="text-2xl font-semibold tracking-tight text-white">restoVentry</h1>
+    <aside className="fixed left-0 top-0 z-40 hidden h-screen w-64 overflow-y-auto bg-[#F1F3FF] p-4 md:flex md:flex-col">
+      <div className="mb-8 flex items-center gap-3 px-2">
+        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#F59E0B] text-white">
+          <Boxes className="h-5 w-5" />
+        </div>
+        <div>
+          <h2 className="font-headline text-lg font-extrabold tracking-tight text-[#613B00]">The Culinary Architect</h2>
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">Kitchen HQ</p>
+        </div>
       </div>
-
-      <nav className="space-y-2">
+      <nav className="flex flex-col gap-1">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           const Icon = item.icon;
@@ -29,29 +36,26 @@ export function Sidebar() {
             <Link
               key={item.name}
               href={item.href}
-              className={`group flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm font-medium transition-all duration-200 ${
+              className={`flex items-center gap-3 rounded-xl p-3 transition-colors duration-200 ${
                 isActive
-                  ? "border-[#22C55E]/50 bg-gradient-to-r from-[#22C55E]/18 to-transparent text-[#22C55E] shadow-[inset_0_0_0_1px_rgba(34,197,94,0.08)]"
-                  : "border-transparent text-gray-400 hover:-translate-y-0.5 hover:border-white/15 hover:bg-[#0B0F0E]/80 hover:text-white"
+                  ? "bg-[#F59E0B] font-bold text-white shadow-sm"
+                  : "text-slate-600 hover:bg-white/55 hover:text-[#613B00]"
               }`}
             >
-              <Icon className="h-4 w-4 transition-transform duration-200 group-hover:scale-105" />
-              {item.name}
+              <Icon className="h-4 w-4" />
+              <span className="font-headline text-sm font-semibold tracking-tight">{item.name}</span>
             </Link>
           );
         })}
       </nav>
-
-      <div className="mt-8 rounded-2xl border border-white/10 bg-[#0B0F0E]/80 p-4 text-xs text-gray-400">
-        <p className="mb-1 text-white">Additional workflows</p>
-        <div className="space-y-1">
-          <Link className="block transition-colors hover:text-[#22C55E]" href="/stock-count">
-            Stock Count
-          </Link>
-          <Link className="block transition-colors hover:text-[#22C55E]" href="/delivery">
-            Delivery Reception
-          </Link>
-        </div>
+      <div className="mt-auto p-2">
+        <button
+          type="button"
+          onClick={() => router.push("/inventory?new=1")}
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#F59E0B] py-3 font-bold text-[#613B00] transition-transform hover:scale-[0.98]"
+        >
+          New Inventory Item
+        </button>
       </div>
     </aside>
   );

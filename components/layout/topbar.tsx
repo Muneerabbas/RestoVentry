@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Bell, Search } from "lucide-react";
+import { Bell, HelpCircle, Search } from "lucide-react";
 
 const mobileLinks = [
   { label: "Dashboard", href: "/" },
@@ -13,27 +13,41 @@ const mobileLinks = [
 
 export function Topbar() {
   return (
-    <header className="fixed right-0 top-0 z-30 border-b border-white/10 bg-[#0B0F0E]/65 px-4 py-4 backdrop-blur-xl md:left-72 md:px-8">
-      <div className="flex items-center gap-3 pb-3 md:pb-0">
-        <div className="glass-surface flex flex-1 items-center gap-2 rounded-2xl border border-white/10 px-3.5 py-2.5 transition-colors focus-within:border-[#22C55E]/40">
-          <Search className="h-4 w-4 text-gray-400" />
+    <header className="fixed left-64 right-0 top-0 z-40 flex h-16 items-center justify-between bg-white/80 px-8 shadow-[0_12px_40px_rgba(17,24,39,0.05)] backdrop-blur-md">
+      <div className="flex max-w-xl flex-1 items-center">
+        <div className="relative w-full">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
           <input
-            className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-500"
-            placeholder="Search inventory, SKUs, deliveries..."
+            className="w-full border-b-2 border-transparent bg-transparent py-2 pl-10 text-sm outline-none transition-all focus:border-[#F59E0B]"
+            placeholder="Search inventory, recipes, or orders..."
             type="text"
           />
         </div>
-        <button className="glass-surface rounded-2xl border border-white/10 p-2.5 text-gray-400 transition-all duration-200 hover:-translate-y-0.5 hover:text-white">
-          <Bell className="h-5 w-5" />
-        </button>
-        <div className="h-10 w-10 rounded-2xl border border-white/20 bg-gradient-to-br from-[#22C55E] via-[#16A34A] to-[#14532D] shadow-[0_8px_20px_rgba(34,197,94,0.35)]" />
+      </div>
+      <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 text-slate-500">
+          <button className="transition-colors hover:text-[#F59E0B]">
+            <Bell className="h-5 w-5" />
+          </button>
+          <button className="transition-colors hover:text-[#F59E0B]">
+            <HelpCircle className="h-5 w-5" />
+          </button>
+        </div>
+        <div className="h-8 w-px bg-slate-200" />
+        <div className="flex items-center gap-3">
+          <div className="text-right">
+            <p className="text-sm font-bold leading-tight text-slate-900">Chef de Cuisine</p>
+            <p className="text-xs text-slate-500">Executive HQ</p>
+          </div>
+          <div className="h-10 w-10 rounded-full border-2 border-[#F59E0B] bg-slate-200" />
+        </div>
       </div>
       <nav className="flex gap-2 overflow-x-auto md:hidden">
         {mobileLinks.map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            className="glass-surface whitespace-nowrap rounded-xl border border-white/10 px-3 py-1.5 text-xs text-gray-300 transition-colors hover:text-white"
+            className="whitespace-nowrap rounded-md border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs text-slate-700"
           >
             {link.label}
           </Link>
