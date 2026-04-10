@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reports - The Atelier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#d8c3ad",
+                        "background": "#f9f9ff",
+                        "surface-dim": "#d3daea",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "on-primary-fixed-variant": "#653e00",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e2e8f8",
+                        "tertiary": "#795900",
+                        "surface": "#f9f9ff",
+                        "tertiary-fixed": "#ffdf9f",
+                        "surface-tint": "#855300",
+                        "primary-fixed": "#ffddb8",
+                        "on-secondary-fixed": "#141b2b",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#404758",
+                        "tertiary-fixed-dim": "#f9bd22",
+                        "surface-container-low": "#f0f3ff",
+                        "on-background": "#151c27",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#d9dff5",
+                        "primary": "#855300",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#2a1700",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#dce2f7",
+                        "outline": "#867461",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#f59e0b",
+                        "on-secondary-container": "#5c6274",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#151c27",
+                        "primary-fixed-dim": "#ffb95f",
+                        "inverse-surface": "#2a313d",
+                        "secondary": "#575e70",
+                        "tertiary-container": "#e0a800",
+                        "inverse-primary": "#ffb95f",
+                        "surface-variant": "#dce2f3",
+                        "on-tertiary-fixed": "#261a00",
+                        "surface-container": "#e7eefe",
+                        "on-primary-container": "#613b00",
+                        "on-surface-variant": "#534434",
+                        "surface-container-highest": "#dce2f3",
+                        "inverse-on-surface": "#ebf1ff",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-tertiary-container": "#584000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-slate-50 dark:bg-slate-900 flex flex-col border-r-0 z-[60]">
+<div class="p-8">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+</div>
+<h1 class="font-['Manrope'] headline-lg tracking-tight font-bold text-slate-900 dark:text-slate-100 text-xl">The Atelier</h1>
+</div>
+<p class="mt-1 text-xs font-medium text-slate-500 tracking-wider uppercase opacity-70">Culinary Inventory</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium">Action Center</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-medium">Inventory</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="calculate">calculate</span>
+<span class="font-medium">Stock Count</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span class="font-medium">Delivery</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+<span class="font-medium">Alerts</span>
+</a>
+<a class="flex items-center gap-3 bg-amber-500/10 text-amber-600 dark:text-amber-400 font-semibold rounded-xl px-4 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="monitoring" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+<span class="font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-medium">Dish Profit</span>
+</a>
+</nav>
+<div class="p-6 mt-auto">
+<div class="flex items-center gap-3 p-3 rounded-xl bg-slate-100 dark:bg-slate-800">
+<img class="w-10 h-10 rounded-lg object-cover" data-alt="close-up portrait of a professional chef in a white uniform with a focused and proud expression in a high-end kitchen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTXcWZjE39rhRiPQX8cTZGyr6c1tKuPlTnfpRKUKQbBeBo6VRNwBomjJMN6q0lH9_XgYMYVfPegecQPeOQwvA_Rjh5F4LCLmcYS8txirTFwx6GVcB4HCVyeOp125tuy6gTJsHCBVNJYjXjMcQsdQVAv_G9RCKNZXLngfSaV4yMq_sBXSuewQc5TVhIWutImN8Yhi1Bh9bKFyYBmYVQTELZ2WYFCTUTaqtOz6MNQ2WF6FtvuW2jILAMjqFtm68oU8l79oqaombSeiE"/>
+<div class="overflow-hidden">
+<p class="text-sm font-bold text-slate-900 dark:text-slate-100 truncate">Marco Pierre</p>
+<p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Executive Chef</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl flex justify-between items-center h-16 px-8 ml-64 shadow-sm dark:shadow-none">
+<div class="flex items-center flex-1 max-w-md">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-amber-500 transition-all placeholder:text-slate-400" placeholder="Search reports..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1">
+<button class="hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full p-2 text-slate-500 transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<button class="hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full p-2 text-slate-500 transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+<div class="h-6 w-[1px] bg-slate-200 mx-2"></div>
+<div class="flex items-center gap-3">
+<span class="text-sm font-['Inter'] font-medium text-slate-700">Financial Period: Oct 2023</span>
+<span class="material-symbols-outlined text-amber-600">calendar_today</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 pb-12 px-12 min-h-screen">
+<!-- Header Section -->
+<div class="mb-10 flex justify-between items-end">
+<div>
+<h2 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">Performance Reports</h2>
+<p class="text-on-surface-variant font-medium">An editorial overview of inventory efficiency and culinary margins.</p>
+</div>
+<button class="bg-primary text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 shadow-lg shadow-primary/20 hover:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-sm">download</span>
+                Export Executive Summary
+            </button>
+</div>
+<!-- KPI Bento Grid Section -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Hero Summary Card -->
+<div class="col-span-12 lg:col-span-8 p-10 rounded-[2rem] bg-gradient-to-br from-primary to-primary-container text-white relative overflow-hidden shadow-2xl">
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div>
+<span class="text-xs font-bold uppercase tracking-widest text-white/70 mb-4 block">Primary Performance Indicator</span>
+<h3 class="text-2xl font-bold mb-8">Stock-to-Sales Velocity</h3>
+<div class="flex items-baseline gap-4">
+<span class="text-7xl font-extrabold tracking-tighter leading-none">94.2%</span>
+<div class="flex items-center gap-1 px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                                +2.4%
+                            </div>
+</div>
+</div>
+<div class="mt-12 grid grid-cols-3 gap-8">
+<div>
+<p class="text-xs font-bold text-white/60 mb-1">WASTE REDUCTION</p>
+<p class="text-xl font-bold">12.8% <span class="text-sm font-normal opacity-60">YoY</span></p>
+</div>
+<div>
+<p class="text-xs font-bold text-white/60 mb-1">TURNOVER RATE</p>
+<p class="text-xl font-bold">18.4 <span class="text-sm font-normal opacity-60">Days</span></p>
+</div>
+<div>
+<p class="text-xs font-bold text-white/60 mb-1">INVENTORY VALUE</p>
+<p class="text-xl font-bold">$142k</p>
+</div>
+</div>
+</div>
+<!-- Abstract Grainy Texture Overlay -->
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-20 pointer-events-none" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC8AIKesCgR_xVNJQkUi9FFNojhhmVYPNocNhQh0FF_GGPEiDJ4VhlAqbI8eDVeJYwtCa1fdCnbkOYHpUGsKzUuCb8iSbmuapm10mopB0x7HVqv3iJyi_Fh_0diR6F9issn3NfJerk7o0bqiHzaYA7sn1HPNMmbhge6tmldqXhU758rVZ9RFy0iYH9qXrdf5AlEmO_L174XNtC_fQx7dqXtgR-BE26Fs4sTysiTZwxzPRwdZPYbcepEiDpRzMoDy-Sw_7I8bKexcEk');"></div>
+<div class="absolute -right-20 -top-20 w-80 h-80 bg-white/10 rounded-full blur-[80px]"></div>
+</div>
+<!-- Secondary Alert Card -->
+<div class="col-span-12 lg:col-span-4 p-8 rounded-[2rem] bg-surface-container-low flex flex-col justify-between border border-transparent">
+<div>
+<div class="w-12 h-12 rounded-2xl bg-error/10 text-error flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-2">High Variance Items</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">4 product categories have exceeded the standard 2.5% variance threshold this week.</p>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-lowest">
+<span class="text-sm font-semibold text-on-surface">Fresh Protein</span>
+<span class="text-xs font-bold text-error">+4.2%</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-lowest">
+<span class="text-sm font-semibold text-on-surface">Imported Spices</span>
+<span class="text-xs font-bold text-error">+3.9%</span>
+</div>
+<button class="w-full py-2 text-xs font-bold text-primary hover:underline transition-all uppercase tracking-widest text-center mt-2">Investigate All</button>
+</div>
+</div>
+<!-- Detailed Tiers -->
+<div class="col-span-12 lg:col-span-4 p-8 rounded-[2rem] bg-white shadow-sm flex flex-col">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Inventory Health</span>
+<div class="flex-1 flex flex-col justify-center gap-8">
+<div class="relative pt-1">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-on-surface">OPTIMAL STOCKING</span>
+<span class="text-xs font-bold text-primary">82%</span>
+</div>
+<div class="overflow-hidden h-2 text-xs flex rounded-full bg-slate-100">
+<div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary" style="width:82%"></div>
+</div>
+</div>
+<div class="relative pt-1">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-on-surface">VENDOR RELIABILITY</span>
+<span class="text-xs font-bold text-tertiary">96%</span>
+</div>
+<div class="overflow-hidden h-2 text-xs flex rounded-full bg-slate-100">
+<div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-tertiary" style="width:96%"></div>
+</div>
+</div>
+<div class="relative pt-1">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-on-surface">SHELF LIFE EFFICIENCY</span>
+<span class="text-xs font-bold text-amber-500">68%</span>
+</div>
+<div class="overflow-hidden h-2 text-xs flex rounded-full bg-slate-100">
+<div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-amber-500" style="width:68%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Glassmorphic Quick Actions -->
+<div class="col-span-12 lg:col-span-8 p-8 rounded-[2rem] bg-surface-container-high relative overflow-hidden group">
+<div class="relative z-10 flex flex-col md:flex-row gap-8 items-center h-full">
+<div class="flex-1">
+<h3 class="text-2xl font-bold text-on-surface mb-3">Predictive Re-ordering</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed max-w-md">Based on current velocity and upcoming seasonal events, we recommend adjusting your dry storage par levels by +15% for the next cycle.</p>
+<div class="flex gap-4 mt-8">
+<button class="bg-on-background text-white px-6 py-3 rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">Apply Recommendations</button>
+<button class="text-primary font-bold text-sm px-4 py-3 hover:bg-white/50 rounded-xl transition-all">Review Dataset</button>
+</div>
+</div>
+<div class="w-full md:w-64 aspect-square bg-white/40 backdrop-blur-2xl rounded-3xl p-6 flex flex-col justify-between border border-white/50 shadow-inner">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined text-lg">auto_awesome</span>
+</div>
+<span class="text-[10px] font-black text-on-surface/30">AI ADVISORY</span>
+</div>
+<div>
+<p class="text-3xl font-black text-on-surface tracking-tighter">$2.4k</p>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">Est. Monthly Savings</p>
+</div>
+</div>
+</div>
+<!-- Subtle background visual -->
+<div class="absolute -right-10 -bottom-10 w-64 h-64 bg-amber-500/10 rounded-full blur-[100px]"></div>
+</div>
+</div>
+<!-- Compact Bottom List: Category Snapshot -->
+<div class="mt-12">
+<div class="flex items-center justify-between mb-6">
+<h4 class="text-lg font-bold text-on-surface">Category Profitability Snapshot</h4>
+<a class="text-sm font-bold text-primary hover:underline" href="#">View All Categories</a>
+</div>
+<div class="bg-surface-container-lowest rounded-3xl overflow-hidden border border-outline-variant/10">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-8 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Department</th>
+<th class="px-8 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Stock Value</th>
+<th class="px-8 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Margin %</th>
+<th class="px-8 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest text-right">Trend</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(133,83,0,0.5)]"></div>
+<span class="text-sm font-bold text-on-surface">Pantry &amp; Dry Goods</span>
+</div>
+</td>
+<td class="px-8 py-5 font-mono text-sm text-on-surface-variant">$42,150.00</td>
+<td class="px-8 py-5 text-sm font-bold text-on-surface">64.2%</td>
+<td class="px-8 py-5 text-right">
+<span class="material-symbols-outlined text-primary text-xl">trending_up</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_rgba(121,89,0,0.5)]"></div>
+<span class="text-sm font-bold text-on-surface">Fine Wines &amp; Spirits</span>
+</div>
+</td>
+<td class="px-8 py-5 font-mono text-sm text-on-surface-variant">$88,400.00</td>
+<td class="px-8 py-5 text-sm font-bold text-on-surface">71.8%</td>
+<td class="px-8 py-5 text-right">
+<span class="material-symbols-outlined text-primary text-xl">trending_up</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-error shadow-[0_0_8px_rgba(186,26,26,0.5)]"></div>
+<span class="text-sm font-bold text-on-surface">Fresh Produce</span>
+</div>
+</td>
+<td class="px-8 py-5 font-mono text-sm text-on-surface-variant">$11,200.00</td>
+<td class="px-8 py-5 text-sm font-bold text-on-surface">48.5%</td>
+<td class="px-8 py-5 text-right">
+<span class="material-symbols-outlined text-error text-xl">trending_down</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- FAB Suppression: Not rendered as this is a Details/Reports screen -->
+</body></html>

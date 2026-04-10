@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stock Count | The Atelier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#d8c3ad",
+                    "background": "#f9f9ff",
+                    "surface-dim": "#d3daea",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#5c4300",
+                    "on-primary-fixed-variant": "#653e00",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e2e8f8",
+                    "tertiary": "#795900",
+                    "surface": "#f9f9ff",
+                    "tertiary-fixed": "#ffdf9f",
+                    "surface-tint": "#855300",
+                    "primary-fixed": "#ffddb8",
+                    "on-secondary-fixed": "#141b2b",
+                    "surface-bright": "#f9f9ff",
+                    "on-secondary-fixed-variant": "#404758",
+                    "tertiary-fixed-dim": "#f9bd22",
+                    "surface-container-low": "#f0f3ff",
+                    "on-background": "#151c27",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#d9dff5",
+                    "primary": "#855300",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed": "#2a1700",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#dce2f7",
+                    "outline": "#867461",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#f59e0b",
+                    "on-secondary-container": "#5c6274",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#151c27",
+                    "primary-fixed-dim": "#ffb95f",
+                    "inverse-surface": "#2a313d",
+                    "secondary": "#575e70",
+                    "tertiary-container": "#e0a800",
+                    "inverse-primary": "#ffb95f",
+                    "surface-variant": "#dce2f3",
+                    "on-tertiary-fixed": "#261a00",
+                    "surface-container": "#e7eefe",
+                    "on-primary-container": "#613b00",
+                    "on-surface-variant": "#534434",
+                    "surface-container-highest": "#dce2f3",
+                    "inverse-on-surface": "#ebf1ff",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "on-tertiary-container": "#584000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(24px);
+        }
+        .glow-dot-error {
+            width: 8px;
+            height: 8px;
+            background-color: #ba1a1a;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #ba1a1a;
+        }
+        .glow-dot-success {
+            width: 8px;
+            height: 8px;
+            background-color: #1a8a3a;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #1a8a3a;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- SideNavBar (Execution from JSON) -->
+<nav class="h-screen w-64 fixed left-0 top-0 bg-slate-50 flex flex-col h-full border-r-0 z-50">
+<div class="p-8">
+<h1 class="font-['Manrope'] headline-lg tracking-tight font-bold text-slate-900">The Atelier</h1>
+<p class="text-xs font-semibold tracking-widest text-slate-400 uppercase mt-1">Culinary Inventory</p>
+</div>
+<div class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 text-slate-500 hover:text-slate-900 px-4 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium">Action Center</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 hover:text-slate-900 px-4 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-medium">Inventory</span>
+</a>
+<!-- Active State Logic: Stock Count matches page intent -->
+<a class="flex items-center gap-3 bg-amber-500/10 text-amber-600 font-semibold rounded-xl px-4 py-3 scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="calculate">calculate</span>
+<span class="font-medium">Stock Count</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 hover:text-slate-900 px-4 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span class="font-medium">Delivery</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 hover:text-slate-900 px-4 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+<span class="font-medium">Alerts</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 hover:text-slate-900 px-4 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+<span class="font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 hover:text-slate-900 px-4 py-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-medium">Dish Profit</span>
+</a>
+</div>
+<div class="p-6 border-t border-slate-100 flex items-center gap-3">
+<img alt="User Profile Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="Close-up portrait of a professional chef in a white uniform with a focused and friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEJYrgnPFDJJezpdP5EmGDVo_dpzI4N7-gr5vRzp9J5xQcBlgM0J_YSkNPSvJlcnekD_pN6EUTmxyMCv5c7sZzXdpOEjk7R0J76c-ZcnGKUID2Rug2yg-sEODvkJMswEsytjqmOx9qYIgYwS1H8b1dPf-yVEoR0D_1WJSXUNSPc2vaiUNvLjRwzMr-6LP-MXPG2SIE3dr9fvSYaj97Kn7bxt1BFLbQMdNRcUzhF1Jr64UAQ3p4VIE8BKUGj9CAZpKhsuwZfAj01ZA"/>
+<div>
+<p class="text-sm font-bold text-slate-900">Julian V.</p>
+<p class="text-xs text-slate-500">Executive Chef</p>
+</div>
+</div>
+</nav>
+<!-- TopNavBar (Execution from JSON) -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-white/80 backdrop-blur-xl flex justify-between items-center h-16 px-8 shadow-sm">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" data-icon="search">search</span>
+<input class="w-full bg-slate-50 border-0 rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-amber-500 transition-all" placeholder="Search inventory items..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-slate-100 rounded-full p-2 text-slate-500 transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="hover:bg-slate-100 rounded-full p-2 text-slate-500 transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="h-8 w-px bg-slate-200 mx-2"></div>
+<img alt="Chef Profile" class="w-8 h-8 rounded-full border-2 border-amber-500 object-cover" data-alt="Small profile icon showing a professional chef wearing a traditional toque blanc hat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKJ0fJw7Tj1wK7qRppo0gJmnebgQnYRCZyC-980bpjuoe4yDcxxXUttW7EmuoDFn_UOmVSoqGIapCWnEyB3vq_7jL90vv13P1v2fEGzeOH8k5yjZv9Jsn6RmvPXcwgxWAWoroADWiewD8wV1CHz0y5yDfP2Z6uOPh_5Jsb8G06Zx444ynIAGDuRXFtHsTW3DCPyXxvTfkwydM1tecxNSLedC5cP7UFyi2A6FVzrzREoK0QeVRC3Vhk1ElTLfu5eE1abjknOGq-epM"/>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 pt-24 px-10 pb-12">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<nav class="flex items-center gap-2 text-xs font-bold text-amber-600 uppercase tracking-widest mb-2">
+<span>Inventory</span>
+<span class="material-symbols-outlined text-[10px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-slate-400">Monthly Reconciliation</span>
+</nav>
+<h2 class="font-headline text-4xl font-extrabold text-on-background tracking-tight">Stock Count</h2>
+<p class="text-slate-500 mt-2 font-medium">Verify current inventory levels for the Dry Storage area.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-3 bg-surface-container-highest text-primary font-bold rounded-xl hover:brightness-105 transition-all">
+                    Export Draft
+                </button>
+<button class="px-8 py-3 bg-gradient-to-r from-primary to-primary-container text-white font-bold rounded-xl shadow-lg shadow-amber-500/20 hover:brightness-110 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+                    Reconcile Counts
+                </button>
+</div>
+</div>
+<!-- Bento Stats Grid -->
+<div class="grid grid-cols-12 gap-6 mb-10">
+<div class="col-span-4 bg-surface-container-low p-8 rounded-[2rem] flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="p-3 bg-white rounded-2xl">
+<span class="material-symbols-outlined text-primary" data-icon="assignment">assignment</span>
+</div>
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Total Items</span>
+</div>
+<div class="mt-6">
+<p class="font-headline text-5xl font-extrabold text-on-background tracking-tighter">142</p>
+<p class="text-sm text-slate-500 mt-1">Items requiring verification</p>
+</div>
+</div>
+<div class="col-span-5 bg-surface-container-lowest p-8 rounded-[2rem] shadow-sm border border-outline-variant/10">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline text-xl font-bold">Quick Summary</h3>
+<span class="text-xs font-bold px-3 py-1 bg-amber-100 text-amber-700 rounded-full">LIVE COUNT</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-slate-500 font-medium">Mismatches Detected</span>
+<div class="flex items-center gap-2">
+<span class="font-bold text-error">12 items</span>
+<div class="glow-dot-error"></div>
+</div>
+</div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 84%"></div>
+</div>
+<p class="text-xs text-slate-400">84% of inventory has been counted and verified.</p>
+</div>
+</div>
+<div class="col-span-3 bg-primary-container p-8 rounded-[2rem] text-on-primary-container relative overflow-hidden group">
+<img alt="Kitchen pantry textures" class="absolute inset-0 w-full h-full object-cover opacity-10 grayscale group-hover:scale-110 transition-transform duration-700" data-alt="Abstract macro shot of organic textures like dried grains and spices in a professional kitchen environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0yVPnXCEg96WBvhPDj7Xaic_FW46BaOJM4Pmfh1FfJupAq69eoBBpS2xWdf7LQ4EEShMASXSSEInyWnDWsZ8oM3uUfMChsbCnlVEUerIYWCUVC4y8DjGVbCJrSPN5ArZX0tuQXtZCsyLAfsuiMMhBJuYQkdxLqaBJ8wJODHoacfprlD6Fq6OmgYnFoz2MeuPhNK2xRgYgjhu9ydtzrXlKlhA3x_r21hzIzCloZPUBxQAm6EXm6pl-Nngd8mvNB609qnN13TMVICI"/>
+<div class="relative z-10 flex flex-col h-full justify-between">
+<span class="material-symbols-outlined text-4xl" data-icon="restaurant_menu">restaurant_menu</span>
+<div>
+<h4 class="font-bold text-lg leading-tight">Variance Impact</h4>
+<p class="text-2xl font-extrabold mt-1">-$428.12</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Inventory Table -->
+<div class="bg-surface-container-lowest rounded-[2rem] shadow-sm border border-outline-variant/10 overflow-hidden">
+<div class="px-8 py-6 flex justify-between items-center border-b border-slate-50">
+<div class="flex gap-4">
+<button class="text-sm font-bold text-primary pb-1 border-b-2 border-primary">All Items</button>
+<button class="text-sm font-medium text-slate-400 hover:text-slate-600">Discrepancies</button>
+<button class="text-sm font-medium text-slate-400 hover:text-slate-600">High Value</button>
+</div>
+<div class="flex items-center gap-2 text-slate-400">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+<span class="text-xs font-bold uppercase tracking-wider">Filter By Category</span>
+</div>
+</div>
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50/50">
+<th class="px-8 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Product Details</th>
+<th class="px-8 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-center">Expected</th>
+<th class="px-8 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-center">Actual</th>
+<th class="px-8 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-right">Variance</th>
+<th class="px-8 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<!-- Row 1: Deficit -->
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center overflow-hidden">
+<img alt="Madagascar Vanilla" class="w-full h-full object-cover" data-alt="Premium Madagascar vanilla beans in a glass jar with a minimalist label on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAndJQ02guQ-25BFHWeZfQg9VVvxpO75VdETo4GTiMYNNkAHrtK3VRZMhFWHeCZztbbn8fwacYFR-TKOfEBWDxv2Mes6ONPMK6WeGzkZ6K093va3qxmR1c-USxwxKz1HCbQ_Tva6SjlNTN7Mkr5vy16u1cvnH7aCXMNrx8IF9mj3xwid3lfnTnEXPZL4S6TdwkVkepEfNJIOLwR0D3txG1FgRIu-4vD_Y2XoqnRUHbSLja4HKjqzmOKPFP6ggHG45Rq6rnWmm0ewIo"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Madagascar Vanilla Beans</p>
+<p class="text-xs text-slate-400">SKU: AT-8829 | Pantry B</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-center font-medium text-slate-500">45 Units</td>
+<td class="px-8 py-6 text-center">
+<input class="w-20 text-center font-bold bg-slate-100/50 border-0 rounded-lg py-1 focus:ring-2 focus:ring-amber-500" type="number" value="41"/>
+</td>
+<td class="px-8 py-6 text-right font-bold text-error">-4</td>
+<td class="px-8 py-6 text-right">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-red-50 text-red-700 rounded-full text-xs font-bold">
+<div class="glow-dot-error"></div>
+                                Deficit
+                            </div>
+</td>
+</tr>
+<!-- Row 2: Match -->
+<tr class="bg-surface-container-low/30 hover:bg-slate-50 transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center overflow-hidden">
+<img alt="Fleur de Sel" class="w-full h-full object-cover" data-alt="Exquisite fleur de sel sea salt crystals being scooped with a wooden spoon in bright daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVpifdssgc2o0TPg43HaDVPBLHa7MeH-De4or6ZJYLuYzh-2jDcwxsUozGD_ZxNIvz6WIugDJXf-tyQioq1ZCj4mWfNM6rJVsDVaMrbloRwUoTeVZYYTG6FwxHoedZCDy9Ouk6B5T0cJLlt3aAaO_lMmBYUoxW8cFYf54RXoHes50dUVJrvRYL8H2dlNP8WLvfqEB54hpTv5hgNDhx4zmTCxYX7PXW5p_4HhuTOpzyonMAPAn5p9hkno5Yb-5BF2vyhdcAvrRE3nE"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Fleur de Sel (Guérande)</p>
+<p class="text-xs text-slate-400">SKU: AT-1120 | Pantry A</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-center font-medium text-slate-500">12 kg</td>
+<td class="px-8 py-6 text-center">
+<input class="w-20 text-center font-bold bg-slate-100/50 border-0 rounded-lg py-1 focus:ring-2 focus:ring-amber-500" type="number" value="12"/>
+</td>
+<td class="px-8 py-6 text-right font-bold text-slate-400">0</td>
+<td class="px-8 py-6 text-right">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Verified</span>
+</td>
+</tr>
+<!-- Row 3: Surplus -->
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center overflow-hidden">
+<img alt="White Truffle Oil" class="w-full h-full object-cover" data-alt="Elegant glass bottle of golden white truffle oil placed on a marble surface with soft atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ4UQ0sOweZXRkVPcpF02BQSKNfMRNsqBklsqN0Um0eS_n8_vV7tibGSR1c_hp78alRTmBOXaoDTijLCT5q7q7nWEiIQniN4432cONwcOZEsMtSPCe6qf3Ylhc7VAPySbcixy_4iCg5zcX4-4yO_6tAXHoxCCH8hzwUCHDDrsSo5hTbbrWSvIJeDoMO6CzK1QV1f6fTNZZMcxAQ-GBwHTeDbxT5FOjUIGCGBY8icE-ndzRK464LKF9bO57ZyScbIltN1Pzn5h4qbY"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">White Truffle Oil (250ml)</p>
+<p class="text-xs text-slate-400">SKU: AT-9901 | Pantry C</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-center font-medium text-slate-500">18 Bottles</td>
+<td class="px-8 py-6 text-center">
+<input class="w-20 text-center font-bold bg-slate-100/50 border-0 rounded-lg py-1 focus:ring-2 focus:ring-amber-500" type="number" value="20"/>
+</td>
+<td class="px-8 py-6 text-right font-bold text-green-600">+2</td>
+<td class="px-8 py-6 text-right">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold">
+<div class="glow-dot-success"></div>
+                                Surplus
+                            </div>
+</td>
+</tr>
+<!-- Row 4: Deficit -->
+<tr class="bg-surface-container-low/30 hover:bg-slate-50 transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center overflow-hidden">
+<img alt="Aged Balsamic" class="w-full h-full object-cover" data-alt="Rich, dark aged balsamic vinegar being poured into a ceramic bowl with elegant light reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_JiC3LK0QdYaSblszlzIjBlXq7Cg-DX_IxLbzTAHA1s4rfiT1OlvvM62Unh5C1tkx8ZulUb8eoVR-Y-Y25vprkq2tYAatix_xuqTyhC307Y1dwxWoc3o2FjJc7O2kDEd74WRyS9X_W16P6CSH9N_-4QbHmdiB13rsQVvwsOfNYZwrzgxTJ2sTnN6fcRiqmTZL-y9ZOcF1dVKkyZHUYFIgUtfgUY1iFHIpGKtbDqDQlGDnDdnBpxkTotG-qqWeEmFTBajZZotV2Y0"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Aged Balsamic (25 Year)</p>
+<p class="text-xs text-slate-400">SKU: AT-4432 | Pantry C</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-center font-medium text-slate-500">5 Bottles</td>
+<td class="px-8 py-6 text-center">
+<input class="w-20 text-center font-bold bg-slate-100/50 border-0 rounded-lg py-1 focus:ring-2 focus:ring-amber-500" type="number" value="3"/>
+</td>
+<td class="px-8 py-6 text-right font-bold text-error">-2</td>
+<td class="px-8 py-6 text-right">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-red-50 text-red-700 rounded-full text-xs font-bold">
+<div class="glow-dot-error"></div>
+                                Critical
+                            </div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-8 py-6 bg-slate-50/50 flex justify-between items-center">
+<div class="flex items-center gap-2 text-slate-500 text-sm">
+<span>Showing 1-4 of 142 items</span>
+<div class="flex gap-1 ml-4">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 transition-colors">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-white border border-slate-200 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Autosaved at 10:42 AM</p>
+<button class="flex items-center gap-2 text-primary font-bold hover:underline">
+<span class="material-symbols-outlined text-sm" data-icon="history">history</span>
+                        View Edit History
+                    </button>
+</div>
+</div>
+</div>
+<!-- Floating Summary Card (Glassmorphism Rule) -->
+<div class="fixed bottom-8 right-8 w-80 glass-panel p-6 rounded-[2rem] shadow-2xl border border-white/20 z-30">
+<h5 class="font-headline font-bold text-slate-900 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-500" data-icon="analytics">analytics</span>
+                Current Session
+            </h5>
+<div class="space-y-3">
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Items Counted</span>
+<span class="font-bold">119 / 142</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Potential Loss</span>
+<span class="font-bold text-error">-$42.00</span>
+</div>
+<div class="h-px bg-slate-200/50 my-2"></div>
+<p class="text-[10px] text-slate-400 italic">Ready for manager reconciliation once all items in 'Pantry B' are finished.</p>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Delivery Tracking - The Atelier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#d8c3ad",
+                        "background": "#f9f9ff",
+                        "surface-dim": "#d3daea",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "on-primary-fixed-variant": "#653e00",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e2e8f8",
+                        "tertiary": "#795900",
+                        "surface": "#f9f9ff",
+                        "tertiary-fixed": "#ffdf9f",
+                        "surface-tint": "#855300",
+                        "primary-fixed": "#ffddb8",
+                        "on-secondary-fixed": "#141b2b",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#404758",
+                        "tertiary-fixed-dim": "#f9bd22",
+                        "surface-container-low": "#f0f3ff",
+                        "on-background": "#151c27",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#d9dff5",
+                        "primary": "#855300",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#2a1700",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#dce2f7",
+                        "outline": "#867461",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#f59e0b",
+                        "on-secondary-container": "#5c6274",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#151c27",
+                        "primary-fixed-dim": "#ffb95f",
+                        "inverse-surface": "#2a313d",
+                        "secondary": "#575e70",
+                        "tertiary-container": "#e0a800",
+                        "inverse-primary": "#ffb95f",
+                        "surface-variant": "#dce2f3",
+                        "on-tertiary-fixed": "#261a00",
+                        "surface-container": "#e7eefe",
+                        "on-primary-container": "#613b00",
+                        "on-surface-variant": "#534434",
+                        "surface-container-highest": "#dce2f3",
+                        "inverse-on-surface": "#ebf1ff",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-tertiary-container": "#584000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(24px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-slate-50 dark:bg-slate-900 flex flex-col h-full border-r-0 z-50">
+<div class="px-6 py-8">
+<h1 class="font-headline headline-lg tracking-tight font-bold text-slate-900 dark:text-slate-100 mb-1">The Atelier</h1>
+<p class="text-xs font-label uppercase tracking-widest text-slate-400">Culinary Inventory</p>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium">Action Center</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-medium">Inventory</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="calculate">calculate</span>
+<span class="font-medium">Stock Count</span>
+</a>
+<!-- Active Navigation: Delivery -->
+<a class="flex items-center gap-3 bg-amber-500/10 text-amber-600 dark:text-amber-400 font-semibold rounded-xl px-4 py-3" href="#">
+<span class="material-symbols-outlined fill-icon" data-icon="local_shipping" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+<span class="font-medium">Delivery</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+<span class="font-medium">Alerts</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+<span class="font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-medium">Dish Profit</span>
+</a>
+</nav>
+<div class="p-6 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<img alt="User Profile Avatar" class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="close-up portrait of a professional chef in white uniform looking focused in a clean modern kitchen environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASlFYVDJBaOJ4jeo2tYarAnQAMyWjJ5_nDA8BxgYYTtXwHxzMx2Wmg7yPXci3ftZBMcZKWmL9v8Lw-c4KK9qnmFq2bW7hB_o51M87lOwh7Kwv4o4fr2VQD1SSG3i_gmanUD4EjH4U25VKYBSVCEtSaoNvhEhUF6cwBzj8lk33yjgWUpwZOgYRZimT2wq7RE_YnppoItYwG5n6WdH_FHRMlNtkvssHlBat-Mo2oSy3XEMf4dBeNxh9Gv9Gv0mLdbcnjtFGH8miAn5c"/>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-slate-100">Julian Chen</p>
+<p class="text-xs text-slate-500">Executive Chef</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl flex justify-between items-center h-16 px-8 ml-64 shadow-sm dark:shadow-none">
+<div class="flex items-center gap-6 w-full max-w-xl">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-900 border-none rounded-full text-sm focus:ring-2 focus:ring-amber-500 transition-all outline-none" placeholder="Search deliveries, invoices or suppliers..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full p-2 transition-colors text-slate-500">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<button class="hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full p-2 transition-colors text-slate-500">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-800 mx-2"></div>
+<img alt="Chef Profile" class="w-8 h-8 rounded-lg object-cover" data-alt="minimalist logo icon of a stylized copper chef's hat with clean geometric lines on white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASi_pfbrQi3h_s7aN7qjJlMWR4Wjt9Ql4T7IKgrrKDoKtRin7NNFc4Orz-BsxC6_J1OLWeQDs245xmzOvbCzZHLh2j3zBbDhgGhSdfxkm33Sh35E_y0Q9TjWYJEhI2l2zstrJImyyECpBBG356vz1vnvzPtW3Rutlb7YI2belDiw1h-mVup7GZhuWFLaaelFXn0LXbWCySlhYhe4JfkksPWOIBQ8P3xezxzyIf0ou5qLN6lkSxUB0pdNTejJ4igPZ-pl5wcxyTX2E"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-16 min-h-screen p-8 space-y-8">
+<!-- Hero Header -->
+<div class="flex justify-between items-end mb-4">
+<div>
+<h2 class="font-headline text-4xl font-extrabold tracking-tight text-on-background">Delivery Receipts</h2>
+<p class="text-secondary mt-2 text-lg">Digitize and reconcile incoming goods with precision.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-3 bg-surface-container-highest text-primary font-semibold rounded-xl hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-xl">history</span>
+                    Audit Log
+                </button>
+<button class="px-8 py-3 bg-gradient-to-r from-primary to-primary-container text-white font-bold rounded-xl shadow-lg shadow-amber-500/20 hover:brightness-105 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-xl">upload_file</span>
+                    Upload New Invoice
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-8">
+<!-- Upload Zone: Glassmorphism Bento Cell -->
+<div class="col-span-12 lg:col-span-4 space-y-8">
+<div class="bg-surface-container-low rounded-3xl p-8 border-none relative overflow-hidden group">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-primary-container/10 rounded-full blur-3xl group-hover:bg-primary-container/20 transition-all"></div>
+<div class="relative z-10 flex flex-col items-center justify-center border-2 border-dashed border-outline-variant/30 rounded-2xl py-12 px-6 bg-surface-container-lowest/50 hover:bg-surface-container-lowest/80 transition-all cursor-pointer group">
+<div class="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl text-primary">add_a_photo</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-on-surface mb-2">Capture or Drop</h3>
+<p class="text-center text-sm text-secondary px-4">Upload PDF invoices or snap a photo of delivery notes to extract items instantly.</p>
+<input class="hidden" type="file"/>
+</div>
+<div class="mt-8 space-y-4">
+<h4 class="text-xs font-label uppercase tracking-widest text-secondary font-bold">Processing Status</h4>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 bg-surface-container-lowest rounded-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-amber-500 animate-pulse">sync</span>
+<span class="text-sm font-medium">invoice_882.pdf</span>
+</div>
+<span class="text-xs font-bold text-primary">Analyzing...</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-lowest rounded-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<span class="text-sm font-medium">deliv_note_mar12.jpg</span>
+</div>
+<span class="text-xs font-bold text-green-600">Complete</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Summary -->
+<div class="bg-gradient-to-br from-primary to-on-primary-container rounded-3xl p-8 text-white shadow-xl">
+<p class="text-white/70 font-label uppercase tracking-widest text-xs mb-1">Monthly Intake</p>
+<h3 class="text-4xl font-headline font-extrabold mb-6">$14,282.40</h3>
+<div class="flex items-center gap-4 text-sm">
+<div class="flex items-center gap-1 bg-white/20 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>12% vs last month</span>
+</div>
+<div class="flex items-center gap-1 text-white/80">
+<span class="material-symbols-outlined text-sm">local_shipping</span>
+<span>42 Shipments</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Table: Modern Data List Bento Cell -->
+<div class="col-span-12 lg:col-span-8">
+<div class="bg-surface-container-low rounded-3xl overflow-hidden shadow-sm">
+<div class="p-8 flex justify-between items-center bg-surface-container-lowest/40 border-b border-outline-variant/5">
+<h3 class="font-headline text-2xl font-bold text-on-surface">Recent Extractions</h3>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors text-secondary">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors text-secondary">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-xs font-label uppercase tracking-widest text-secondary/70 border-b border-outline-variant/5">
+<th class="px-8 py-5 font-bold">Item &amp; Supplier</th>
+<th class="px-8 py-5 font-bold">Quantity</th>
+<th class="px-8 py-5 font-bold">Unit Price</th>
+<th class="px-8 py-5 font-bold">Status</th>
+<th class="px-8 py-5 font-bold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<!-- Row 1 -->
+<tr class="hover:bg-white group transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl overflow-hidden bg-surface-container-high flex-shrink-0">
+<img alt="Tomato" class="w-full h-full object-cover" data-alt="close-up macro photography of fresh vibrant red cherry tomatoes with water droplets" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkZlksLEMv332euTYtQpZYHKrDWE70XCq5IO7LIuXhU5XIvbl1xZJHf5HV64l7CYGVrWIJ18WmhTxkuNqcf2R4xMhhzZC3r9MGbFrJ4zVzfeMaH-QZZb1k0rDWtpUUIQYclLvrXDh12_Ty-b4vxO7ounxmSzJ_-DndNj3hiHzH17o2v8M01l1QGXOT8489oZYJc4T8DxnXH4zU0GG4d-o5d1HNSZ7-5eYh7B3qqPislmU0DaZEkDcHgvqXYTEv1NdayepXH79ADB0"/>
+</div>
+<div>
+<p class="font-bold text-on-surface text-base">San Marzano Tomatoes</p>
+<p class="text-sm text-secondary">Vero Organic Farms</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<p class="text-on-surface font-semibold">24 Case (6x3kg)</p>
+<p class="text-xs text-secondary mt-1">Inv #V-9021</p>
+</td>
+<td class="px-8 py-6">
+<p class="text-on-surface font-bold text-base">$42.50</p>
+<p class="text-xs text-secondary mt-1">-$2.10 from last</p>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]"></div>
+<span class="text-sm font-medium text-on-surface">Matched</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="text-amber-600 hover:text-amber-700 font-bold text-sm tracking-tight hover:underline">Accept</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container-low/50 hover:bg-white group transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl overflow-hidden bg-surface-container-high flex-shrink-0">
+<img alt="Milk" class="w-full h-full object-cover" data-alt="dramatic lighting on organic whole milk pouring into a heavy ceramic pitcher" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC48lZao6KeQmQtJDWVq6Ss4m5yWtRyWRPLxsjJEOzcmeNWJeirq8uYzpEXrf0e9pAEc2nFCRUVrs_LSh2f_UZi0fvwIUkZ4NnJ16PPlIzHT_eTdo-hCr7cE8p2BHRNMwDoqSkOZQ2ix2H_3EmoHYHH6NSHNKFeRnGPQxKnioTaCTamDUfAqgPgmQWz20-1z1ASv-zPJ20dno2LZjKXcFWX9Kd7P1nwtUhqrEn69jDdjxhY5dT2_adqPIzbfz-FfCUdwSUpXHfcyLU"/>
+</div>
+<div>
+<p class="font-bold text-on-surface text-base">Organic Whole Milk</p>
+<p class="text-sm text-secondary">Dairy Gold Artisans</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<p class="text-on-surface font-semibold">120 Liters</p>
+<p class="text-xs text-secondary mt-1">Inv #DG-441</p>
+</td>
+<td class="px-8 py-6">
+<p class="text-on-surface font-bold text-base">$1.85</p>
+<p class="text-xs text-error mt-1">+0.15 Increase</p>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></div>
+<span class="text-sm font-medium text-on-surface">Flagged</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="text-amber-600 hover:text-amber-700 font-bold text-sm tracking-tight hover:underline">Review</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-white group transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl overflow-hidden bg-surface-container-high flex-shrink-0">
+<img alt="Flour" class="w-full h-full object-cover" data-alt="aesthetic close-up of premium high-protein flour with wooden measuring scoops on a dark wood table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrBCF08MGX_7Gb0dPe3D-r-PNhZy2sIKp08ZBoloNaSeMjHmHqqf3uVtWMca-Wa99DOju3zSLlC-0OxtHLfWp01YdHMWAQCffOzCryeT2y4ZTlF0n_9a-8VlWFv3AsNQpYeksFcNLUliR-8V3S1r6083SsomfEJZ5muXJEoCmgkeVEfAZg8Pi8UAXKMpYr5rUh3a8IcxTuIUaxe_iFfgP6vn1q6VHboLtjik10KKwsrVkjQ7pheyqYs8wTjcJgA2grU8GojU4b180"/>
+</div>
+<div>
+<p class="font-bold text-on-surface text-base">Type 00 Flour</p>
+<p class="text-sm text-secondary">Mino Mills</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<p class="text-on-surface font-semibold">500 kg</p>
+<p class="text-xs text-secondary mt-1">Inv #M-2210</p>
+</td>
+<td class="px-8 py-6">
+<p class="text-on-surface font-bold text-base">$0.92</p>
+<p class="text-xs text-secondary mt-1">Stable</p>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]"></div>
+<span class="text-sm font-medium text-on-surface">Matched</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="text-amber-600 hover:text-amber-700 font-bold text-sm tracking-tight hover:underline">Accept</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-surface-container-low/50 hover:bg-white group transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl overflow-hidden bg-surface-container-high flex-shrink-0">
+<div class="w-full h-full flex items-center justify-center bg-slate-200">
+<span class="material-symbols-outlined text-slate-400">inventory</span>
+</div>
+</div>
+<div>
+<p class="font-bold text-on-surface text-base">New Item: Saffron Threads</p>
+<p class="text-sm text-secondary">Imported Spice Co.</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<p class="text-on-surface font-semibold">100g</p>
+<p class="text-xs text-secondary mt-1">Inv #ISC-99</p>
+</td>
+<td class="px-8 py-6">
+<p class="text-on-surface font-bold text-base">$840.00</p>
+<p class="text-xs text-secondary mt-1">New Entry</p>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-slate-300"></div>
+<span class="text-sm font-medium text-on-surface">Unlinked</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="text-amber-600 hover:text-amber-700 font-bold text-sm tracking-tight hover:underline">Map Item</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 bg-surface-container-lowest/40 flex justify-center border-t border-outline-variant/5">
+<button class="text-sm font-bold text-secondary hover:text-primary transition-colors flex items-center gap-2">
+                            View 28 more recent uploads
+                            <span class="material-symbols-outlined text-base">arrow_downward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button Contextual Logic -->
+<div class="fixed bottom-10 right-10 flex flex-col items-end gap-4 z-50">
+<div class="bg-surface-container-lowest shadow-2xl rounded-2xl p-4 border border-outline-variant/10 max-w-xs animate-in fade-in slide-in-from-bottom-5">
+<div class="flex items-start gap-3">
+<div class="bg-amber-100 p-2 rounded-lg">
+<span class="material-symbols-outlined text-amber-600">lightbulb</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Bulk Reconciliation</p>
+<p class="text-xs text-secondary mt-1 leading-relaxed">You have 12 items waiting for approval. Use batch actions to save time.</p>
+<button class="mt-2 text-xs font-bold text-primary hover:underline">Process Batch</button>
+</div>
+</div>
+</div>
+<button class="w-16 h-16 bg-primary hover:bg-primary-container text-white rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-105 active:scale-95 group">
+<span class="material-symbols-outlined text-3xl group-hover:rotate-90 transition-transform">add</span>
+</button>
+</div>
+</main>
+</body></html>

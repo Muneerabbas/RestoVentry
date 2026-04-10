@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dish Profit Analytics | The Culinary Architect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9ff;
+        }
+        .font-headline {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#534434",
+                        "on-primary-container": "#613b00",
+                        "surface-variant": "#dce2f7",
+                        "tertiary-fixed-dim": "#7fd0ff",
+                        "background": "#f9f9ff",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#855300",
+                        "on-secondary-container": "#795423",
+                        "inverse-primary": "#ffb95f",
+                        "outline": "#867461",
+                        "inverse-surface": "#293040",
+                        "surface": "#f9f9ff",
+                        "surface-container-low": "#f1f3ff",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#ffcb8f",
+                        "secondary-fixed-dim": "#f0bd82",
+                        "primary-fixed": "#ffddb8",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#004c6a",
+                        "on-primary-fixed": "#2a1700",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-secondary-fixed": "#2a1700",
+                        "on-error": "#ffffff",
+                        "on-surface": "#141b2b",
+                        "surface-dim": "#d3daef",
+                        "surface-bright": "#f9f9ff",
+                        "on-background": "#141b2b",
+                        "tertiary-fixed": "#c5e7ff",
+                        "secondary": "#7d5725",
+                        "primary-container": "#f59e0b",
+                        "secondary-fixed": "#ffddb8",
+                        "primary-fixed-dim": "#ffb95f",
+                        "on-primary-fixed-variant": "#653e00",
+                        "outline-variant": "#d8c3ad",
+                        "primary": "#855300",
+                        "tertiary": "#00658b",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#001e2d",
+                        "on-secondary-fixed-variant": "#62400f",
+                        "surface-container-highest": "#dce2f7",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#e9edff",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#1abdff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#004966",
+                        "surface-container-high": "#e1e8fd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-surface-container-low border-none flex flex-col gap-2 p-4 z-50">
+<div class="mb-8 px-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">skillet</span>
+</div>
+<div>
+<h1 class="text-lg font-extrabold text-[#613B00] font-headline tracking-tight">The Culinary Architect</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Kitchen HQ</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 rounded-xl transition-all font-headline font-semibold tracking-tight hover:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 rounded-xl transition-all font-headline font-semibold tracking-tight hover:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Inventory
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-[#F59E0B] text-white rounded-xl shadow-sm font-bold font-headline tracking-tight hover:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+                Orders
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 rounded-xl transition-all font-headline font-semibold tracking-tight hover:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+                Suppliers
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 rounded-xl transition-all font-headline font-semibold tracking-tight hover:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">skillet</span>
+                Kitchen Lab
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 rounded-xl transition-all font-headline font-semibold tracking-tight hover:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="mt-auto p-2">
+<button class="w-full py-3 bg-primary text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Inventory Item
+            </button>
+</div>
+</aside>
+<!-- TopNavBar Component -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 bg-white/80 backdrop-blur-md flex justify-between items-center px-8 w-full shadow-[0_12px_40px_rgba(17,24,39,0.05)]">
+<div class="flex items-center gap-6 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-0 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+<input class="w-full bg-transparent border-none border-b-2 border-transparent focus:border-[#F59E0B] focus:ring-0 pl-8 py-2 text-sm font-medium transition-all" placeholder="Search Profit Analytics..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="flex gap-8">
+<a class="text-[#855300] font-bold border-b-2 border-[#F59E0B] py-5 text-sm font-body" href="#">Profit Analysis</a>
+<a class="text-slate-500 hover:text-[#F59E0B] transition-colors py-5 text-sm font-body" href="#">Cost Control</a>
+<a class="text-slate-500 hover:text-[#F59E0B] transition-colors py-5 text-sm font-body" href="#">Recipe Logs</a>
+</nav>
+<div class="flex items-center gap-4 ml-4">
+<button class="p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<img alt="Chef Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary-container" data-alt="Close-up portrait of a professional chef in a white uniform smiling in a bright modern kitchen environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5GsaGF4rF1Yj_SjrujSkcmkyhywYb3Vh7defK7S5VT5qkB0JQXH-MlK8SSpghjTJpZtplM9R45cizmk9CiXjSLoicQtGuLS27cgnAisHAI3UEROtr2fJ8V-bG6usKBKESTyO7zdGq_xIaHlIhti_8Dqd3DKDZ89UtF8yZTHQG8u5FMiaenrKWZtTI-_Q16I13QVqHbUD72FLS0e7jU1J9hr5PguWaJKPJSN8S16NR5YIee7xfUXRF2au7btX0t1yGXC46Q00bNtna"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 p-8 min-h-screen">
+<!-- Hero Metrics (Asymmetric Bento Style) -->
+<div class="grid grid-cols-12 gap-6 mb-10">
+<div class="col-span-12 lg:col-span-5 bg-gradient-to-br from-primary-container to-[#FFCB8F] p-8 rounded-[24px] text-on-primary-container relative overflow-hidden shadow-sm">
+<div class="relative z-10">
+<p class="text-sm font-bold opacity-80 mb-2 uppercase tracking-wider">Avg. Profit Margin</p>
+<h2 class="text-5xl font-extrabold font-headline mb-4">68.4%</h2>
+<div class="flex items-center gap-2 text-sm font-semibold bg-white/20 w-fit px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+                        +2.4% vs last month
+                    </div>
+</div>
+<div class="absolute -right-10 -bottom-10 opacity-10">
+<span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+</div>
+<div class="col-span-6 lg:col-span-3 bg-surface-container-lowest p-8 rounded-[24px] shadow-[0_12px_40px_rgba(17,24,39,0.05)] flex flex-col justify-between">
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Total Food Cost</p>
+<h3 class="text-3xl font-bold font-headline text-on-surface">$12,402.10</h3>
+</div>
+<div class="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden mt-4">
+<div class="h-full bg-primary w-[32%] rounded-full"></div>
+</div>
+</div>
+<div class="col-span-6 lg:col-span-4 bg-surface-container-lowest p-8 rounded-[24px] shadow-[0_12px_40px_rgba(17,24,39,0.05)] border-l-4 border-[#059669]">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">High Profit Dish</p>
+<h3 class="text-xl font-bold font-headline text-on-surface mb-2">Truffle Risotto</h3>
+<p class="text-sm text-[#059669] font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">payments</span>
+                    $14.20 Net Profit/Unit
+                </p>
+</div>
+</div>
+<!-- Profit Analysis Table (SaaS / Notion Style) -->
+<div class="bg-surface-container-lowest rounded-[24px] shadow-[0_12px_40px_rgba(17,24,39,0.05)] overflow-hidden">
+<div class="px-8 py-6 flex items-center justify-between">
+<h2 class="font-headline text-xl font-bold">Dish Profitability Ledger</h2>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-sm font-semibold bg-surface-container-low rounded-lg hover:bg-slate-200 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Filter
+                    </button>
+<button class="px-4 py-2 text-sm font-semibold bg-surface-container-low rounded-lg hover:bg-slate-200 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export CSV
+                    </button>
+</div>
+</div>
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-8 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 font-body">Dish Name</th>
+<th class="px-8 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 font-body">Category</th>
+<th class="px-8 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 font-body">Food Cost</th>
+<th class="px-8 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 font-body">Menu Price</th>
+<th class="px-8 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 font-body">Gross Profit</th>
+<th class="px-8 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 font-body text-right">Margin %</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- High Margin (Green) -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="Dish" class="w-10 h-10 rounded-lg object-cover" data-alt="Professional overhead shot of a vibrant salmon salad with microgreens and citrus dressing on a designer ceramic plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_afdo4m0w7lHq2BSiRqHQO39Ft2HIuQ2v9phhbkA72Dnqq3HN8tLRXYRtxJu9gplT-sBBLA-aGTJqWfxR7ynl-RfsSK56T7BVJF_Qxlcpk-1DHpoSSWrZNy6cXgNfshvYcXMwigf4H-tujrjmnAQc5m2VhqLFkFEDFzweu_PomKLeAMGEI2Gh9kx2v89-yzemShRNGm-EoUKKT78MqHX0GMf-gwGd9e0AAi-5seV3j0-3lf8w_tLekwQNS8dsnYML3UV-CPZq6mPk"/>
+<span class="font-semibold text-on-surface">Pan-Seared Atlantic Salmon</span>
+</div>
+</td>
+<td class="px-8 py-5 text-sm text-slate-500">Main Course</td>
+<td class="px-8 py-5 text-sm font-mono">$8.40</td>
+<td class="px-8 py-5 text-sm font-mono">$32.00</td>
+<td class="px-8 py-5 text-sm font-mono">$23.60</td>
+<td class="px-8 py-5 text-right">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-[#E6F4EA] text-[#059669]">
+                                73.8%
+                            </span>
+</td>
+</tr>
+<!-- High Margin (Green) -->
+<tr class="bg-surface-container-low/20 hover:bg-slate-50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="Dish" class="w-10 h-10 rounded-lg object-cover" data-alt="Close-up of a perfectly plated truffle mushroom risotto with parmesan shavings and fresh herbs in a dark restaurant setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB8abZDMi3oKlNf7sTgVGYo8_3DTVxG1LYyGgj0BRQABMYPozSugOrPP104OXk0pAFQEi9Z78MLlYqK3VarONm6Bpu8gWd-BvpID2boZnLhp5UBW0cVIm_8-ozVR3uu32ymp8yLFlWRlTa7RLSH6FA36mS-hdp4LBbbAd7hxowgeq47xWLVMMYiRRkBGKsfqMu2dFlOiA-Ey0cuMgixG0DicjkclvxxyncdNdsmcu1jQRhVexy0y89j9nPHQHjORm8jK6w2vV8rsAt"/>
+<span class="font-semibold text-on-surface">Truffle Forest Risotto</span>
+</div>
+</td>
+<td class="px-8 py-5 text-sm text-slate-500">Vegetarian</td>
+<td class="px-8 py-5 text-sm font-mono">$4.80</td>
+<td class="px-8 py-5 text-sm font-mono">$24.00</td>
+<td class="px-8 py-5 text-sm font-mono">$19.20</td>
+<td class="px-8 py-5 text-right">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-[#E6F4EA] text-[#059669]">
+                                80.0%
+                            </span>
+</td>
+</tr>
+<!-- Low Margin (Red) -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="Dish" class="w-10 h-10 rounded-lg object-cover" data-alt="Premium Wagyu ribeye steak with golden crust and red center, sliced on a wooden board with sea salt crystals" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqFKzp8uNNdmCk47_8KgLWydwon2c44DGWKAS78PCzMlM9dszR4nrARsX15wlKf8blsiPoI-hJ5ctkH8QnY27dB-DrgqJEjKoIHDBKz-nA-DKik7po26Xg3CqsWu-vI7RdRCucR36k1M53IPHKE0khG8CMIVN7FqjRAIXpjhpCsJ1SPWCC6knc5BpuMOo1kZ3A6hhLBb_1iBXg62UXfDBkqDGWQSS2TsKpza-ji11VLCcmKXZo8vvPoYbE8CIfcpjby8wXVFT602HK"/>
+<span class="font-semibold text-on-surface">A5 Wagyu Ribeye</span>
+</div>
+</td>
+<td class="px-8 py-5 text-sm text-slate-500">Premium Steaks</td>
+<td class="px-8 py-5 text-sm font-mono">$72.00</td>
+<td class="px-8 py-5 text-sm font-mono">$95.00</td>
+<td class="px-8 py-5 text-sm font-mono">$23.00</td>
+<td class="px-8 py-5 text-right">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-[#FDE8E8] text-error">
+                                24.2%
+                            </span>
+</td>
+</tr>
+<!-- Normal Margin -->
+<tr class="bg-surface-container-low/20 hover:bg-slate-50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="Dish" class="w-10 h-10 rounded-lg object-cover" data-alt="Gourmet handmade pasta with slow-cooked ragu and basil leaf on a rustic white plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd1lH8jAFruZoo0BdIIo-OuXVc8lRn3yHLhXM27g2auBsqOh1e48myykLD4bBK-0Mg_dMVGQOBJLlOy3r7-C8v_34EzmV-BjX_qoTp9rLWgBe-j1_uXc0Ahkl9JtF8P8wnzbyg_a0tInO4U7y9Yw9G2YF35XL5HOe6MipZRBx9emGHN_2FgmKc1tijeIN3X42GykMSBs4EO_vG0nrMNyYBDI-e6ousb333QWo89ADTW5qcs5gCopfXzDLzXzt3aW03WUoz7gk9_Okt"/>
+<span class="font-semibold text-on-surface">Artisan Tagliatelle Ragu</span>
+</div>
+</td>
+<td class="px-8 py-5 text-sm text-slate-500">Pasta</td>
+<td class="px-8 py-5 text-sm font-mono">$6.50</td>
+<td class="px-8 py-5 text-sm font-mono">$22.00</td>
+<td class="px-8 py-5 text-sm font-mono">$15.50</td>
+<td class="px-8 py-5 text-right">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600">
+                                70.5%
+                            </span>
+</td>
+</tr>
+<!-- Low Margin (Red) -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="Dish" class="w-10 h-10 rounded-lg object-cover" data-alt="Smoked beef brisket ribs served on a metal tray with coleslaw and pickles, rustic BBQ style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqypHS--u876Bqie8J3VZxtV8ihQzv06NFII2ANQ9d-mlAcMIJQRmU6cjWCEmll92lNu1NlR9IK4dPWtjZgeYOGl813bnAS4OOtcG_-hkXk87lzEEZi168uPd1WuYF92yjbLTmW7V_eCmkGMzMlw6qLns5PHQKnFVGcJM76SREDTwe02Sku7s2gT1VyqwfxGHH6pZIzWCmJeptssFQmogOaIAFG27_99lxDGCEQk-XV92Ldjw9tjMm_NB0lLMdfdYzsdirw45T1In9"/>
+<span class="font-semibold text-on-surface">Slow-Smoked Beef Ribs</span>
+</div>
+</td>
+<td class="px-8 py-5 text-sm text-slate-500">Grill</td>
+<td class="px-8 py-5 text-sm font-mono">$18.20</td>
+<td class="px-8 py-5 text-sm font-mono">$28.00</td>
+<td class="px-8 py-5 text-sm font-mono">$9.80</td>
+<td class="px-8 py-5 text-right">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-[#FDE8E8] text-error">
+                                35.0%
+                            </span>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-8 py-4 bg-surface-container-low/30 border-t border-slate-100 flex items-center justify-between">
+<p class="text-xs text-slate-500 font-medium">Showing 5 of 42 analyzed dishes</p>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-200 rounded-lg transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<span class="text-xs font-bold">1 / 9</span>
+<button class="p-2 hover:bg-slate-200 rounded-lg transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Margin Intelligence (Glassmorphism overlay section) -->
+<div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="p-6 rounded-[24px] bg-white border border-slate-100 shadow-sm">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 bg-primary-container/10 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+<div>
+<h4 class="font-headline font-bold">Profit Optimization Tips</h4>
+<p class="text-xs text-slate-500">AI-generated based on current ingredient market prices</p>
+</div>
+</div>
+<ul class="space-y-4">
+<li class="flex gap-3 text-sm">
+<span class="material-symbols-outlined text-amber-500">warning</span>
+<span>Butter prices rose by 12%. Consider adjusting the <strong>Gourmet Croissant</strong> recipe to maintain its 65% margin.</span>
+</li>
+<li class="flex gap-3 text-sm">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<span>Bulk buying for <strong>Wagyu</strong> can reduce food cost by $5.00/unit, moving margin to 31%.</span>
+</li>
+</ul>
+</div>
+<div class="p-6 rounded-[24px] bg-slate-900 text-white shadow-xl relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-headline font-bold mb-2">Cost Performance Trend</h4>
+<p class="text-xs text-slate-400 mb-6">Ingredient fluctuations vs Menu Pricing over 6 months</p>
+<div class="flex items-end gap-2 h-24 mb-4">
+<div class="w-full bg-primary/20 rounded-t h-[40%]"></div>
+<div class="w-full bg-primary/40 rounded-t h-[60%]"></div>
+<div class="w-full bg-primary/60 rounded-t h-[55%]"></div>
+<div class="w-full bg-primary/80 rounded-t h-[80%]"></div>
+<div class="w-full bg-primary rounded-t h-[95%]"></div>
+<div class="w-full bg-white rounded-t h-[70%]"></div>
+</div>
+<div class="flex justify-between text-[10px] font-bold text-slate-500 uppercase">
+<span>Jan</span>
+<span>Feb</span>
+<span>Mar</span>
+<span>Apr</span>
+<span>May</span>
+<span>Jun</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

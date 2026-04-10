@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stock Count Reconciliation | The Culinary Architect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface-variant": "#534434",
+                      "on-primary-container": "#613b00",
+                      "surface-variant": "#dce2f7",
+                      "tertiary-fixed-dim": "#7fd0ff",
+                      "background": "#f9f9ff",
+                      "on-error-container": "#93000a",
+                      "surface-tint": "#855300",
+                      "on-secondary-container": "#795423",
+                      "inverse-primary": "#ffb95f",
+                      "outline": "#867461",
+                      "inverse-surface": "#293040",
+                      "surface": "#f9f9ff",
+                      "surface-container-low": "#f1f3ff",
+                      "error": "#ba1a1a",
+                      "secondary-container": "#ffcb8f",
+                      "secondary-fixed-dim": "#f0bd82",
+                      "primary-fixed": "#ffddb8",
+                      "error-container": "#ffdad6",
+                      "on-tertiary-fixed-variant": "#004c6a",
+                      "on-primary-fixed": "#2a1700",
+                      "inverse-on-surface": "#edf0ff",
+                      "on-secondary-fixed": "#2a1700",
+                      "on-error": "#ffffff",
+                      "on-surface": "#141b2b",
+                      "surface-dim": "#d3daef",
+                      "surface-bright": "#f9f9ff",
+                      "on-background": "#141b2b",
+                      "tertiary-fixed": "#c5e7ff",
+                      "secondary": "#7d5725",
+                      "primary-container": "#f59e0b",
+                      "secondary-fixed": "#ffddb8",
+                      "primary-fixed-dim": "#ffb95f",
+                      "on-primary-fixed-variant": "#653e00",
+                      "outline-variant": "#d8c3ad",
+                      "primary": "#855300",
+                      "tertiary": "#00658b",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed": "#001e2d",
+                      "on-secondary-fixed-variant": "#62400f",
+                      "surface-container-highest": "#dce2f7",
+                      "on-secondary": "#ffffff",
+                      "surface-container": "#e9edff",
+                      "on-primary": "#ffffff",
+                      "tertiary-container": "#1abdff",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-container": "#004966",
+                      "surface-container-high": "#e1e8fd"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-[#F1F3FF] dark:bg-slate-900 flex flex-col gap-2 p-4 z-50">
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+</div>
+<div>
+<h1 class="text-lg font-extrabold text-[#613B00] dark:text-[#F59E0B] font-headline">The Culinary Architect</h1>
+<p class="text-xs text-slate-500 font-medium">Kitchen HQ</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-xl transition-all hover:scale-[0.98] font-['Manrope'] font-semibold tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Inventory Active State (Mapping 'Stock Count' intent) -->
+<a class="flex items-center gap-3 px-4 py-3 bg-[#F59E0B] text-white rounded-xl shadow-sm font-bold font-['Manrope'] tracking-tight hover:scale-[0.98] transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-xl transition-all hover:scale-[0.98] font-['Manrope'] font-semibold tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span>Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-xl transition-all hover:scale-[0.98] font-['Manrope'] font-semibold tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span>Suppliers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-xl transition-all hover:scale-[0.98] font-['Manrope'] font-semibold tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="skillet">skillet</span>
+<span>Kitchen Lab</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-xl transition-all hover:scale-[0.98] font-['Manrope'] font-semibold tracking-tight mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<button class="mt-4 bg-primary-container text-on-primary-container px-4 py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:scale-[0.98] transition-transform shadow-sm">
+<span class="material-symbols-outlined">add</span>
+<span>New Inventory Item</span>
+</button>
+</aside>
+<!-- TopNavBar Component -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md flex justify-between items-center px-8 w-full shadow-[0_12px_40px_rgba(17,24,39,0.05)]">
+<div class="flex items-center gap-4 flex-1 max-w-md">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-transparent border-b-2 border-transparent focus:border-[#F59E0B] focus:ring-0 text-sm font-['Inter'] font-medium transition-all outline-none" placeholder="Search inventory..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<button class="text-slate-500 hover:text-[#F59E0B] transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-slate-500 hover:text-[#F59E0B] transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+<div class="flex items-center gap-3 border-l pl-6 border-slate-200">
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface">Chef Marco</p>
+<p class="text-[10px] uppercase tracking-widest text-slate-500">Executive Chef</p>
+</div>
+<img alt="Chef Profile" class="w-10 h-10 rounded-full object-cover ring-2 ring-primary-container/20" data-alt="professional portrait of an executive chef in a white uniform with a confident expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACETAygAtgYoxw1oQHR7YUJM6sC2EuStWlsUVPVfvUnSEgCQ4z9ZoR4-BOiqa7pDwsP-AksuuiM4SQKN1-kPB_zuWWJ9PmcsgDvH41Fw6aqpoYJhUt_X17w-8go8_yqMIUnEkg6lC9G3roXlEgbHE1ep7VaMz2OTxbMzHyfb7nnbMn48U6TFlksndkIKevfxUbOGdcxyjJeoANceT3eqRcbiIwoqokjaWcierqB0MYJ92Shx3pDFFyDH55FGCRYnqNLLPx0ta7NTAx"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 p-8 min-h-screen">
+<!-- Hero Header -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<nav class="flex items-center gap-2 text-xs font-medium text-slate-400 mb-2">
+<span>Inventory</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-primary font-bold">Stock Count</span>
+</nav>
+<h2 class="text-4xl font-extrabold font-headline tracking-tight text-on-surface">Monthly Reconciliation</h2>
+<p class="text-slate-500 mt-2 font-medium">Review discrepancies between digital logs and physical counts for <span class="text-on-surface font-bold">Cold Storage Zone A</span>.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-5 py-2.5 rounded-xl border border-outline-variant text-on-surface font-semibold hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">download</span>
+                    Export CSV
+                </button>
+<button class="px-6 py-2.5 rounded-xl bg-primary text-white font-bold hover:scale-[0.98] transition-transform shadow-md flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+                    Commit Reconciliation
+                </button>
+</div>
+</div>
+<!-- Summary Metric Cards -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-[0_8px_30px_rgba(0,0,0,0.04)] relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/5 to-transparent opacity-50"></div>
+<div class="relative z-10">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Total Items Counted</p>
+<p class="text-3xl font-extrabold font-headline">1,248</p>
+<div class="mt-4 flex items-center gap-1.5 text-green-600 text-xs font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>98% Accuracy</span>
+</div>
+</div>
+</div>
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-[0_8px_30px_rgba(0,0,0,0.04)] relative overflow-hidden">
+<div class="relative z-10">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Mismatch Value</p>
+<p class="text-3xl font-extrabold font-headline text-error">-$412.50</p>
+<div class="mt-4 flex items-center gap-1.5 text-error text-xs font-bold">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span>Requires Attention</span>
+</div>
+</div>
+</div>
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-[0_8px_30px_rgba(0,0,0,0.04)] relative overflow-hidden">
+<div class="relative z-10">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Surplus Found</p>
+<p class="text-3xl font-extrabold font-headline text-on-tertiary-fixed-variant">+$128.10</p>
+<div class="mt-4 flex items-center gap-1.5 text-tertiary text-xs font-bold">
+<span class="material-symbols-outlined text-sm">inventory</span>
+<span>12 SKUs affected</span>
+</div>
+</div>
+</div>
+<div class="p-6 rounded-2xl bg-gradient-to-br from-[#F59E0B] to-[#FFCB8F] shadow-lg relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined text-6xl text-white">analytics</span>
+</div>
+<div class="relative z-10">
+<p class="text-xs font-bold text-white/80 uppercase tracking-widest mb-1">Inventory Value</p>
+<p class="text-3xl font-extrabold font-headline text-on-primary-container">$42,850</p>
+<div class="mt-4 flex items-center gap-1.5 text-on-primary-container/70 text-xs font-bold">
+<span>Refreshed 2m ago</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Reconciliation Table -->
+<div class="bg-surface-container-lowest rounded-3xl shadow-[0_20px_60px_rgba(17,24,39,0.03)] overflow-hidden border border-slate-100">
+<div class="px-8 py-6 flex justify-between items-center border-b border-slate-50">
+<h3 class="font-headline font-bold text-xl">Stock Discrepancy List</h3>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined">sort</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-[10px] uppercase tracking-[0.15em] text-slate-400 font-bold border-b border-slate-50">
+<th class="px-8 py-4">Ingredient / Item</th>
+<th class="px-6 py-4">Category</th>
+<th class="px-6 py-4 text-right">Expected (Sys)</th>
+<th class="px-6 py-4 text-right">Actual (Phys)</th>
+<th class="px-6 py-4 text-right">Variance</th>
+<th class="px-8 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="text-sm font-medium">
+<!-- Row 1: Deficit -->
+<tr class="group hover:bg-slate-50/50 transition-colors bg-white">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden bg-slate-100 flex-shrink-0">
+<img alt="Truffle Oil" class="w-full h-full object-cover" data-alt="bottle of premium black truffle oil on a wooden table with soft focus kitchen background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqzwTz40KHPq6ByLjBP_b9_-5LoEdfzCIfl33tIpz4aq-eZ2scHGBM4QxedsZq2vQdx1MuKC4_3I8057tpU-i_O8WNpnVDPOQ-jiHlsvUlTikx724-IdeKYw968dG7sZnN0obHy2CC3DV-AJ2-yl8Btcx1_hyADEtUbGOIFVvFW-6x3pMIFXaXSU88I7Xtq_hnqt7XjnnP08Ct1HsSWAAqfXCSMFNpOGG4Nb3xVT78_kOPR5yF7YL8KL67WwYlc3D3jbKsUwYL1W3z"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Black Truffle Oil (500ml)</p>
+<p class="text-xs text-slate-400">SKU: TO-500-BK</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-on-secondary-fixed-variant text-[10px] font-bold uppercase tracking-wider">Dry Storage</span>
+</td>
+<td class="px-6 py-5 text-right font-mono text-slate-600">24.00</td>
+<td class="px-6 py-5 text-right font-mono text-on-surface">18.00</td>
+<td class="px-6 py-5 text-right">
+<div class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-error/5 text-error font-bold">
+<span class="material-symbols-outlined text-xs">south</span>
+<span>-6.00</span>
+</div>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="px-3 py-1.5 text-xs font-bold rounded-lg bg-surface-container text-on-surface hover:bg-slate-200">Recount</button>
+<button class="px-3 py-1.5 text-xs font-bold rounded-lg bg-primary/10 text-primary hover:bg-primary/20">Resolve</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Surplus -->
+<tr class="group hover:bg-slate-50/50 transition-colors bg-surface-container-low/20">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden bg-slate-100 flex-shrink-0">
+<img alt="Salmon Fillet" class="w-full h-full object-cover" data-alt="fresh Atlantic salmon fillets arranged neatly on ice in a professional kitchen setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGzJ8NvZ3ibhVPl1LYjZu4tRZvJ78akN2GQ3oel3qFTBYnLGMgB6U6d7rpkCpga1CiGxI2NDO15_8HYdIuhfFg-5wKxEDB0lYfGgOjUBqJBhht3iJzPkjweGb5HtAQzZJWUZcdNQHckIsk_hYtFQ1eO-dqJ0pZPkkz7Le6elIEIVMtbg4wGgJcbwrJ9PE6Q_TlmYzMMbKG8l982fzLSLakYx4Sdf14KxDPVatIJ3JNydf1qWr5OpKqT9HKdsYTF89jUWJ6QGdBjZW0"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Atlantic Salmon Fillet</p>
+<p class="text-xs text-slate-400">SKU: SF-KG-ATL</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-on-secondary-fixed-variant text-[10px] font-bold uppercase tracking-wider">Cold Storage</span>
+</td>
+<td class="px-6 py-5 text-right font-mono text-slate-600">45.50 kg</td>
+<td class="px-6 py-5 text-right font-mono text-on-surface">48.25 kg</td>
+<td class="px-6 py-5 text-right">
+<div class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-on-tertiary/5 text-on-tertiary-fixed-variant font-bold">
+<span class="material-symbols-outlined text-xs">north</span>
+<span>+2.75</span>
+</div>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="px-3 py-1.5 text-xs font-bold rounded-lg bg-surface-container text-on-surface hover:bg-slate-200">Recount</button>
+<button class="px-3 py-1.5 text-xs font-bold rounded-lg bg-primary/10 text-primary hover:bg-primary/20">Resolve</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Perfect Match (Subtle) -->
+<tr class="group hover:bg-slate-50/50 transition-colors bg-white">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden bg-slate-100 flex-shrink-0">
+<img alt="Heirloom Tomatoes" class="w-full h-full object-cover" data-alt="vibrant organic heirloom tomatoes in various colors on a rustic wooden tray" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_JrXhENaOHcWD9x-5-qQLO0cqJDjvQtQeicOfWiGFP2kyoANzYsXEnT6OfOEwLY3S6wTUVhQANtELXVo9UAE1VIbLdtN5rUdj5txSv8284R5Go4FtK-wKPiq3zy3CE0I9PJmZqpYyHBjVs8MH3IEjzviFguGC_n0Nrc4W2kVXdGQz5KYj7bxfmFelUXXAmMsft2X3MIW3uOjA34FylnwMuO5Rn6eKnnCC6yyll7qm_FL8a5z5Y_Kcbzvtrqoe2jBsqTqWQGHwKFuY"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Heirloom Tomatoes</p>
+<p class="text-xs text-slate-400">SKU: VEG-HT-01</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-on-secondary-fixed-variant text-[10px] font-bold uppercase tracking-wider">Produce</span>
+</td>
+<td class="px-6 py-5 text-right font-mono text-slate-600">12.00 kg</td>
+<td class="px-6 py-5 text-right font-mono text-on-surface">12.00 kg</td>
+<td class="px-6 py-5 text-right">
+<div class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-50 text-slate-400 font-bold">
+<span class="material-symbols-outlined text-xs">drag_handle</span>
+<span>0.00</span>
+</div>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-xs text-slate-400 italic py-1.5">No action required</span>
+</div>
+</td>
+</tr>
+<!-- Row 4: Large Deficit -->
+<tr class="group hover:bg-slate-50/50 transition-colors bg-surface-container-low/20">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden bg-slate-100 flex-shrink-0">
+<img alt="Wagyu Ribeye" class="w-full h-full object-cover" data-alt="thick cut of marbled Wagyu beef ribeye steak on a stone board with garnishes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbyQh4vZt-q-kQbLVL1RSHiJvagMzI6z4wDADveJ2PkqkRiSV9__vvJoPKpxYoHGdwgR3x7gf7QcSbPu-zi2ja6C9AaqPZ6P5zDJdi1oLjNspu-TXwsHXjNJ1ANZXP9fbGuyT5weuMXDgmZLDiTM9lEYd85kn661y8m9VNTfppja3EPK3SdZYDEbzqT4-kbCNM_R2TFLzLR9SCH5Y2-OwIkfzHfJT88YYoEZtRo6dxtUv-vokCYezbaZ0AulfHWRRRtMkiwtSELNMa"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Wagyu Ribeye A5</p>
+<p class="text-xs text-slate-400">SKU: MEAT-WG-A5</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-low text-on-secondary-fixed-variant text-[10px] font-bold uppercase tracking-wider">High Value</span>
+</td>
+<td class="px-6 py-5 text-right font-mono text-slate-600">8.00</td>
+<td class="px-6 py-5 text-right font-mono text-on-surface">5.00</td>
+<td class="px-6 py-5 text-right">
+<div class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-error/10 text-error font-extrabold shadow-sm">
+<span class="material-symbols-outlined text-xs">south</span>
+<span>-3.00</span>
+</div>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="px-3 py-1.5 text-xs font-bold rounded-lg bg-surface-container text-on-surface hover:bg-slate-200">Recount</button>
+<button class="px-3 py-1.5 text-xs font-bold rounded-lg bg-primary text-white hover:bg-primary-fixed-variant">Resolve</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer -->
+<div class="px-8 py-6 bg-slate-50/50 flex justify-between items-center text-sm font-medium text-slate-500">
+<p>Showing 1-4 of 12 discrepancies</p>
+<div class="flex gap-4 items-center">
+<button class="flex items-center gap-1 hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+                        Previous
+                    </button>
+<div class="flex gap-1">
+<span class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white font-bold">1</span>
+<span class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-200 cursor-pointer">2</span>
+<span class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-200 cursor-pointer">3</span>
+</div>
+<button class="flex items-center gap-1 hover:text-on-surface transition-colors">
+                        Next
+                        <span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Secondary Section: Notes & Log -->
+<div class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-3xl shadow-[0_20px_60px_rgba(17,24,39,0.03)]">
+<h4 class="font-headline font-bold text-lg mb-6">Reconciliation Notes</h4>
+<div class="space-y-4">
+<div class="p-4 rounded-2xl bg-surface-container-low/50 border-l-4 border-primary">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-on-surface">Sous Chef David L.</span>
+<span class="text-[10px] text-slate-400">14:20 PM</span>
+</div>
+<p class="text-sm text-slate-600 italic">"The Salmon surplus is likely due to the unrecorded morning delivery from OceanFresh. Recounted twice to confirm."</p>
+</div>
+<textarea class="w-full bg-surface-container-low rounded-2xl p-4 border-none focus:ring-2 focus:ring-primary-container text-sm min-h-[100px]" placeholder="Add a new reconciliation note..."></textarea>
+<button class="mt-2 text-primary font-bold text-sm hover:underline">Attach Photos / Invoice</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-[0_20px_60px_rgba(17,24,39,0.03)]">
+<h4 class="font-headline font-bold text-lg mb-6">Audit Trail</h4>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="w-2 h-2 rounded-full bg-on-tertiary-fixed-variant mt-2"></div>
+<div class="w-[2px] flex-1 bg-slate-100 my-1"></div>
+</div>
+<div>
+<p class="text-sm font-bold">Physical Count Started</p>
+<p class="text-[11px] text-slate-400">Today, 08:00 AM by Alex M.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="w-2 h-2 rounded-full bg-on-tertiary-fixed-variant mt-2"></div>
+<div class="w-[2px] flex-1 bg-slate-100 my-1"></div>
+</div>
+<div>
+<p class="text-sm font-bold">Cold Storage Zone A Completed</p>
+<p class="text-[11px] text-slate-400">Today, 10:30 AM by Alex M.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="w-2 h-2 rounded-full bg-primary mt-2"></div>
+</div>
+<div>
+<p class="text-sm font-bold">Reconciliation Flagged</p>
+<p class="text-[11px] text-slate-400">Today, 11:15 AM - Automatic</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-3 rounded-xl border border-dashed border-outline-variant text-slate-400 font-bold text-sm hover:bg-slate-50 transition-colors">
+                    View Full History
+                </button>
+</div>
+</div>
+</main>
+</body></html>

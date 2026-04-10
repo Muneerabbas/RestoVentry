@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dish Profitability | The Atelier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#d8c3ad",
+                        "background": "#f9f9ff",
+                        "surface-dim": "#d3daea",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "on-primary-fixed-variant": "#653e00",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e2e8f8",
+                        "tertiary": "#795900",
+                        "surface": "#f9f9ff",
+                        "tertiary-fixed": "#ffdf9f",
+                        "surface-tint": "#855300",
+                        "primary-fixed": "#ffddb8",
+                        "on-secondary-fixed": "#141b2b",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#404758",
+                        "tertiary-fixed-dim": "#f9bd22",
+                        "surface-container-low": "#f0f3ff",
+                        "on-background": "#151c27",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#d9dff5",
+                        "primary": "#855300",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#2a1700",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#dce2f7",
+                        "outline": "#867461",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#f59e0b",
+                        "on-secondary-container": "#5c6274",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#151c27",
+                        "primary-fixed-dim": "#ffb95f",
+                        "inverse-surface": "#2a313d",
+                        "secondary": "#575e70",
+                        "tertiary-container": "#e0a800",
+                        "inverse-primary": "#ffb95f",
+                        "surface-variant": "#dce2f3",
+                        "on-tertiary-fixed": "#261a00",
+                        "surface-container": "#e7eefe",
+                        "on-primary-container": "#613b00",
+                        "on-surface-variant": "#534434",
+                        "surface-container-highest": "#dce2f3",
+                        "inverse-on-surface": "#ebf1ff",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-tertiary-container": "#584000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9ff; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar Anchor -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-slate-50 dark:bg-slate-900 flex flex-col border-r-0 z-50">
+<div class="p-6">
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50">The Atelier</h1>
+<p class="text-xs text-slate-500 font-medium tracking-wide">Culinary Inventory</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium">Action Center</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-medium">Inventory</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">calculate</span>
+<span class="font-medium">Stock Count</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-medium">Delivery</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">notifications_active</span>
+<span class="font-medium">Alerts</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 px-4 py-3 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 bg-amber-500/10 text-amber-600 dark:text-amber-400 font-semibold rounded-xl px-4 py-3" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-medium">Dish Profit</span>
+</a>
+</nav>
+<div class="p-6 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<img alt="Chef Profile" class="w-10 h-10 rounded-full object-cover" data-alt="Professional chef in white uniform working in a modern clean restaurant kitchen with soft focused background lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD-wCvfr7_AK-ESJI-xD7VKA104coJQAvrpS7PFX3Kmc7Bkl3YarYq5U01DL-kA77YvJrBxqRdMxpAukH7yhO7NPnO50ZyrmK_fdk_XrI6ecB6MHq5CmDA3W0IITQ_H2j-p92q4MP77XpnjHP_J01azopblgIto_Ih3f-Rt1ZwxqsZOsi7rX760qMYh8ORqP92mouhP7kTxvXOJGlbYsdXFcpfe0ERNA0S-9zfBLQQApQDUJ2NAejsIC0aEwh4WJ5nStVD8MA_F1k"/>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-slate-50">Marcus V.</p>
+<p class="text-xs text-slate-500">Executive Chef</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar Anchor -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl">
+<div class="flex justify-between items-center h-16 px-8">
+<div class="flex items-center gap-4 bg-surface-container-low px-4 py-2 rounded-full w-96 transition-all focus-within:ring-2 focus-within:ring-primary">
+<span class="material-symbols-outlined text-slate-400">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full font-body" placeholder="Search recipe or category..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full p-2 transition-all">
+<span class="material-symbols-outlined text-slate-600">help_outline</span>
+</button>
+<button class="hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full p-2 transition-all">
+<span class="material-symbols-outlined text-slate-600">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/20 mx-2"></div>
+<div class="flex items-center gap-2">
+<span class="text-sm font-semibold text-primary">DISH PROFIT</span>
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-8 pb-12 min-h-screen">
+<!-- Editorial Header Section -->
+<header class="mb-10">
+<h2 class="text-4xl font-extrabold tracking-tight text-on-background headline-lg mb-2">Culinary Margins</h2>
+<p class="text-slate-500 font-medium">Analyzing the economic precision of every plate.</p>
+</header>
+<!-- Bento Grid Performance Summary -->
+<div class="grid grid-cols-12 gap-6 mb-10">
+<div class="col-span-8 bg-gradient-to-br from-primary to-primary-container rounded-xl p-8 text-white relative overflow-hidden">
+<div class="relative z-10">
+<p class="text-sm font-bold uppercase tracking-widest opacity-80 mb-4">Portfolio Yield</p>
+<div class="flex items-baseline gap-4">
+<span class="text-6xl font-extrabold tracking-tighter">72.4%</span>
+<span class="flex items-center text-sm font-bold bg-white/20 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-xs mr-1">trending_up</span> +3.2%
+                        </span>
+</div>
+<div class="mt-8 flex gap-12">
+<div>
+<p class="text-xs uppercase font-bold opacity-70 mb-1">Total Plate Sales</p>
+<p class="text-xl font-bold">$124,500</p>
+</div>
+<div>
+<p class="text-xs uppercase font-bold opacity-70 mb-1">Raw Ingredient Cost</p>
+<p class="text-xl font-bold">$34,360</p>
+</div>
+<div>
+<p class="text-xs uppercase font-bold opacity-70 mb-1">Net Margin Value</p>
+<p class="text-xl font-bold text-amber-100">$90,140</p>
+</div>
+</div>
+</div>
+<!-- Abstract Texture Decor -->
+<div class="absolute -right-16 -bottom-16 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+</div>
+<div class="col-span-4 bg-surface-container-low rounded-xl p-6 flex flex-col justify-between">
+<div>
+<h3 class="text-lg font-bold text-on-surface mb-4">Cost Distribution</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-sm font-medium text-slate-600">Proteins</span>
+<span class="text-sm font-bold">48%</span>
+</div>
+<div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 48%"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm font-medium text-slate-600">Produce</span>
+<span class="text-sm font-bold">22%</span>
+</div>
+<div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full" style="width: 22%"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm font-medium text-slate-600">Dairy &amp; Dry</span>
+<span class="text-sm font-bold">30%</span>
+</div>
+<div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary-container h-full" style="width: 30%"></div>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 bg-surface-container-lowest text-primary font-bold rounded-xl text-sm hover:bg-white transition-colors">
+                    Download Full Report
+                </button>
+</div>
+</div>
+<!-- Profitability Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 overflow-hidden">
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center">
+<div class="flex gap-4">
+<button class="px-4 py-2 bg-primary/10 text-primary font-bold rounded-lg text-sm">All Dishes</button>
+<button class="px-4 py-2 text-slate-500 font-medium rounded-lg text-sm hover:bg-slate-100">Main Courses</button>
+<button class="px-4 py-2 text-slate-500 font-medium rounded-lg text-sm hover:bg-slate-100">Appetizers</button>
+</div>
+<div class="flex items-center gap-2 text-slate-400 cursor-pointer">
+<span class="text-xs font-bold uppercase tracking-widest">Filter by Margin</span>
+<span class="material-symbols-outlined text-lg">filter_list</span>
+</div>
+</div>
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">Dish Name</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">Category</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">Recipe Cost</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">Sale Price</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">Gross Margin</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500">Status</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-[0.1em] text-slate-500 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- High Margin Item -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-slate-200 overflow-hidden shrink-0">
+<img alt="Salmon Dish" class="w-full h-full object-cover" data-alt="Gourmet pan-seared salmon fillet with vibrant spring vegetables on a minimalist white ceramic plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeuyLptqcITJBKPdibd5k-Tqf_EBeLaQTiqpnUy6rn43xvpQ21rn3Z89SxdyHyVaPRqcnTU4XyMsMqlTpvjkWVeIpaQM7PeLvZup5Uw_Sn7ZSVUQM0uikMN4D-9JqimbvH_0G89wOloJdDbrj_7qWZv09hqKg8qO8UEcOqHL_2WpqW8M64C3GX5cNOTRgaywGyq6wZr-qBVIRcnNkCm8VdTQlc1BbmaWrJBSsj8nDkUeiPP6fCmPdSwzwAzq2OV39k1KZ6EXST3ig"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-background">Wild Cedar Salmon</p>
+<p class="text-[11px] text-slate-400">SKU: RD-9021</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-xs font-semibold px-2 py-1 rounded bg-slate-100 text-slate-600">Main Course</span>
+</td>
+<td class="px-6 py-5 text-sm font-medium text-slate-600">$8.45</td>
+<td class="px-6 py-5 text-sm font-medium text-on-background">$38.00</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold text-emerald-600">77.8%</span>
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"></span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700">TOP PERFORMER</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="material-symbols-outlined text-slate-400 hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+<!-- Low Margin Item -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-slate-200 overflow-hidden shrink-0">
+<img alt="Ribeye Steak" class="w-full h-full object-cover" data-alt="Thick-cut dry aged ribeye steak with golden brown crust and fresh rosemary on dark slate background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpEiJMzCMnpWaTURqeTCV8FjEV8r_PnXBetOZqHh0xRnF516dkHyQQKgluJao95QYjzSvo71ZbaXCQH_LQOT40rk3IpImY_PI1aCOkW0A-rZSUK_EDITcHaBeBHV7dr4Yz9oZ9EUeFeMAo3OODpKLprjfyCBlNNg--bxdcmXiYoIlsulUZnIlAc1f_oEkSv5rsGhTEA5n6Z3jE5x1UTly1Ki2rpX3CvoEsavKrko9D8LoDTocn-JJFg3BVLC2OP4OSmWwXw-0CVjw"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-background">Dry-Aged Ribeye</p>
+<p class="text-[11px] text-slate-400">SKU: RD-4410</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-xs font-semibold px-2 py-1 rounded bg-slate-100 text-slate-600">Main Course</span>
+</td>
+<td class="px-6 py-5 text-sm font-medium text-slate-600">$24.10</td>
+<td class="px-6 py-5 text-sm font-medium text-on-background">$52.00</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold text-error">53.6%</span>
+<span class="w-1.5 h-1.5 rounded-full bg-error shadow-[0_0_8px_rgba(186,26,26,0.6)]"></span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-error-container text-on-error-container">LOW MARGIN</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="material-symbols-outlined text-slate-400 hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+<!-- Balanced Margin Item -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-slate-200 overflow-hidden shrink-0">
+<img alt="Pasta" class="w-full h-full object-cover" data-alt="Handmade tagliatelle pasta with heirloom cherry tomatoes and fresh basil leaves in a warm golden sauce" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHjd5CV-HCdP5xrNXh8UMZqWX8mFjMm-3WCz7RL3s5iemi3OeP7IVElqEf0F5jkAZ_TKZLw1qV5mge3mF_71nnGEs1C2pGwr-OckKU6bZ3IF3KvGUgNyhzcpJzpRodpkoSK_JpahmX7rpYwKEiar_zqnBu_pUbz-JCWH85xOVpjrJnnmG6bouNA3AAcW9afuzv2sgTvs__Rrd8jkirPs-Q5-vBnCTw8cNIPcf4M5LHM8kzUdMuuEB7GrlCFNUTrLS3NIUt-jM26wo"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-background">Truffle Tagliatelle</p>
+<p class="text-[11px] text-slate-400">SKU: RD-1102</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-xs font-semibold px-2 py-1 rounded bg-slate-100 text-slate-600">Entrée</span>
+</td>
+<td class="px-6 py-5 text-sm font-medium text-slate-600">$5.20</td>
+<td class="px-6 py-5 text-sm font-medium text-on-background">$24.00</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold text-primary">78.3%</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-secondary-container text-on-secondary-container">STABLE</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="material-symbols-outlined text-slate-400 hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+<!-- High Margin Item -->
+<tr class="hover:bg-slate-50/50 transition-colors">
+<td class="px-6 py-5">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-slate-200 overflow-hidden shrink-0">
+<img alt="Cocktail" class="w-full h-full object-cover" data-alt="Artisanal craft cocktail with crystal clear ice and a twist of citrus peel in a heavy crystal glass" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGUyyWvkoLRTt5e7qj0PHg8O-WLsXxLAny4AAlyIdIS0TfgNJWHPdLVQCufOca7Ay-9tNJ8XMVmFaXtDr96udMOShUAebwDTYWu5zBMsHa5Cw03DzBxl2bew-T5WWRaLbAlrQd6DE6rhDqrtCwwr3OX3DlziQY0oC9QRmzx0ZO9JE9yW7MkQewJR4KVoEdzqdWypvCYubGuHgbsSyRwu1FonRTaNft4qpubdbgZZvZW0NcRSIgCN2jmqVSsyvNjwd7AwoZhobEYBc"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-background">Atelier Negroni</p>
+<p class="text-[11px] text-slate-400">SKU: RD-005</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-xs font-semibold px-2 py-1 rounded bg-slate-100 text-slate-600">Beverage</span>
+</td>
+<td class="px-6 py-5 text-sm font-medium text-slate-600">$2.15</td>
+<td class="px-6 py-5 text-sm font-medium text-on-background">$16.00</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold text-emerald-600">86.5%</span>
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"></span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700">TOP PERFORMER</span>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="material-symbols-outlined text-slate-400 hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-6 py-4 bg-surface-container-low/30 border-t border-outline-variant/10 flex justify-between items-center">
+<p class="text-xs font-medium text-slate-500">Showing 4 of 42 dishes</p>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant/30 text-slate-400 hover:bg-white"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white text-xs font-bold shadow-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant/30 text-slate-500 hover:bg-white text-xs font-bold">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant/30 text-slate-500 hover:bg-white text-xs font-bold">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant/30 text-slate-400 hover:bg-white"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Float Action Summaries (Glassmorphism) -->
+<div class="fixed bottom-8 right-8 flex flex-col gap-3">
+<div class="bg-white/80 backdrop-blur-xl border border-white/50 p-4 rounded-xl shadow-2xl flex items-center gap-4 max-w-xs transition-transform hover:-translate-y-1">
+<div class="w-10 h-10 bg-error/10 rounded-full flex items-center justify-center text-error">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-0.5">Critical Insight</p>
+<p class="text-xs font-medium text-on-surface leading-tight">Steak cost increased by 12% this week. Margin alert.</p>
+</div>
+</div>
+<button class="bg-gradient-to-r from-primary to-primary-container text-white px-6 py-4 rounded-xl font-bold flex items-center gap-3 shadow-lg self-end hover:brightness-110 transition-all">
+<span class="material-symbols-outlined">add</span>
+                New Recipe Calculation
+            </button>
+</div>
+</main>
+</body></html>
